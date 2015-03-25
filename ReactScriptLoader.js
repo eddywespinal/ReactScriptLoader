@@ -24,7 +24,7 @@ var ReactScriptLoader = {
 		if (typeof component.onScriptError !== 'function') {
 			throw new Error('ScriptLoader: Component class must implement onScriptError()');
 		}
-		if (loadedScripts[scriptURL]) {
+		if (loadedScripts[scriptURL] && !(typeof component.forceScriptLoad !== 'undefined' ? component.forceScriptLoad() : false)) {
 			component.onScriptLoaded();
 			return;
 		}
